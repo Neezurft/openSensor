@@ -1,0 +1,5 @@
+# ts-node
+node_modules/
+
+# environment
+firmware/environment.h

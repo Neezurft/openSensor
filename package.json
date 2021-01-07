@@ -1,0 +1,16 @@
+{
+  "name": "opensensor",
+  "version": "1.0.0",
+  "main": "",
+  "repository": "https://github.com/Neezurft/openSensor.git",
+  "author": "Neezurft <https://github.com/Neezurft>",
+  "license": "MIT",
+  "scripts": {
+    "bundle": "ts-node scripts/bundleHTML.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.20",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}

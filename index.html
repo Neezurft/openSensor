@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>
+      <span>LED Status: </span>
+      <span id="pinStatus"></span>
+    </p>
+    <button id="pollButton" onclick="togglePoll()">Poll LED status</button>
+    <button onclick="toggleLED()">Toggle LED Status</button>
+    <script>
+      let interval = null;
+
+      function pollLEDStatus() {
+        fetch("/pinStatus")
+          .then((res) => res.json())
+          .then(({ status }) => {
+            document.getElementById(
+              "pinStatus"
+            ).innerHTML = `LED is currently ${status ? "ON" : "OFF"}`;
+          });
+      }
+
+      function startPolling() {
+        interval = setInterval(pollLEDStatus, 500);
+      }
+
+      function toggleLED() {
+        fetch("/toggleLED", { method: "POST" });
+      }
+
+      function togglePoll() {
+        if (interval !== null) {
+          clearInterval(interval);
+          interval = null;
+          document.getElementById("pollButton").innerHTML = "Poll LED status";
+        } else {
+          document.getElementById("pollButton").innerHTML =
+            "Stop Polling LED status";
+          startPolling();
+        }
+      }
+
+      pollLEDStatus();
+    </script>
+  </body>
+</html>
